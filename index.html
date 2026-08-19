@@ -109,7 +109,9 @@ const W=[
   {jp:'今日は雨です。<span class="hl">でも</span>、学校に行きます。',rm:'Kyō wa ame desu. Demo, gakkō ni ikimasu.',zh:'今天下雨。但是我還是要去學校。',
    g:'前句<code>雨です</code>（名詞＋です）與後句<code>行きます</code>（動詞ます形）語氣相反，用でも連接。でも後面通常加逗號。',},
   {jp:'あの映画は長いです。<span class="hl">でも</span>、とても面白いです。',rm:'Ano eiga wa nagai desu. Demo, totemo omoshiroi desu.',zh:'那部電影很長。但是非常有趣。',
-   g:'い形容詞句（<code>長いです</code>／<code>面白いです</code>）也能用でも連接。<code>とても</code>是程度副詞，修飾後面的形容詞。'}
+   g:'い形容詞句（<code>長いです</code>／<code>面白いです</code>）也能用でも連接。<code>とても</code>是程度副詞，修飾後面的形容詞。'},
+  {jp:'私は肉が好きです。<span class="hl">でも</span>、魚は苦手です。',rm:'Watashi wa niku ga suki desu. Demo, sakana wa nigate desu.',zh:'我喜歡肉。但是不太敢吃魚。',
+   g:'<code>〜が苦手です</code>＝不擅長／不敢吃，對象用<b>が</b>。兩句都用<b>は</b>形成對比（肉／魚），でも讓這個對比更清楚。'}
  ],
  warn:'「でも」還有另一個完全不同的用法：接在疑問詞後表「無論…都」，如<code>誰でも（誰都）</code>、<code>いつでも（隨時）</code>、<code>何でも（什麼都）</code>。看到でも要先判斷是「接續詞」還是「助詞」。'},
 
@@ -119,7 +121,9 @@ const W=[
   {jp:'私は日本語が好きです<span class="hl">けど</span>、難しいです。',rm:'Watashi wa nihongo ga suki desu kedo, muzukashii desu.',zh:'我雖然喜歡日文，但是很難。',
    g:'けど直接接在<code>好きです</code>後面，<b>不斷句</b>——這是與でも最大的不同。<code>〜が好きです</code>的對象用助詞<b>が</b>不用を。'},
   {jp:'仕事は忙しい<span class="hl">けど</span>、やりがいがあります。',rm:'Shigoto wa isogashii kedo, yarigai ga arimasu.',zh:'工作雖然忙，但很有成就感。',
-   g:'い形容詞可直接＋けど（<code>忙しい＋けど</code>，不用加です）。名詞・な形容詞則要加<b>だ</b>：<code>学生だけど</code>、<code>便利だけど</code>。'}
+   g:'い形容詞可直接＋けど（<code>忙しい＋けど</code>，不用加です）。名詞・な形容詞則要加<b>だ</b>：<code>学生だけど</code>、<code>便利だけど</code>。'},
+  {jp:'彼は学生<span class="hl">だけど</span>、会社を作りました。',rm:'Kare wa gakusei da kedo, kaisha o tsukurimashita.',zh:'他雖然是學生，但開了公司。',
+   g:'名詞接けど<b>要先加だ</b>：<code>学生＋だ＋けど</code>。な形容詞同理（<code>元気だけど</code>）。丁寧體則說<code>学生ですけど</code>。'}
  ],
  warn:'對長輩、上司、正式報告避免用「けど」，改用<code>〜ですが</code>或<code>〜けれども</code>。'},
 
@@ -129,7 +133,9 @@ const W=[
   {jp:'昨日は寝ていません。<span class="hl">だから</span>、今日は疲れています。',rm:'Kinō wa nete imasen. Dakara, kyō wa tsukarete imasu.',zh:'昨天沒睡。所以今天很累。',
    g:'兩句都用<code>〜ています</code>（狀態持續）。<code>寝ていません</code>＝ています的否定，表「一直沒睡的狀態」。'},
   {jp:'明日試験があります。<span class="hl">だから</span>、勉強しなければなりません。',rm:'Ashita shiken ga arimasu. Dakara, benkyō shinakereba narimasen.',zh:'明天有考試。所以我必須讀書。',
-   g:'<code>〜なければなりません</code>＝「必須…」（N4義務句型）。動詞ない形去い＋<code>ければなりません</code>：勉強しない → 勉強しなければなりません。'}
+   g:'<code>〜なければなりません</code>＝「必須…」（N4義務句型）。動詞ない形去い＋<code>ければなりません</code>：勉強しない → 勉強しなければなりません。'},
+  {jp:'ここは駅から近いです。<span class="hl">だから</span>、家賃が高いです。',rm:'Koko wa eki kara chikai desu. Dakara, yachin ga takai desu.',zh:'這裡離車站近。所以房租很貴。',
+   g:'<code>〜から近い</code>＝離…近，起點用<b>から</b>。前句客觀原因、後句必然結果，是だから最典型的形狀。'}
  ],
  warn:'「だから」帶有強調自己主張的語感，用在反駁對方時（<code>だから言ったでしょう</code>＝我就說吧）會顯得不耐煩。對上司說明理由請用<b>ですから</b>。'},
 
@@ -137,7 +143,11 @@ const W=[
  core:'<b>口語接續詞</b>，放句首，用來<b>替自己辯解或反駁</b>，語氣像撒嬌／不服氣。<br><span class="pat">（對方的話）→ だって、＋［理由］＋もん／から。</span>',
  ex:[
   {jp:'私は日本に行きたいです。<span class="hl">だって</span>、友達がいますから。',rm:'Watashi wa Nihon ni ikitai desu. Datte, tomodachi ga imasu kara.',zh:'我想去日本。因為（我）有朋友在那裡啊。',
-   g:'<code>〜たいです</code>＝想做…（ます形去ます＋たい）。だって常與句尾的<code>から</code>／<code>もん</code>搭配，加強「這是理由啊」的語氣。'}
+   g:'<code>〜たいです</code>＝想做…（ます形去ます＋たい）。だって常與句尾的<code>から</code>／<code>もん</code>搭配，加強「這是理由啊」的語氣。'},
+  {jp:'どうして食べないの。<span class="hl">だって</span>、お腹がいっぱいなんだもん。',rm:'Dōshite tabenai no. Datte, onaka ga ippai nan da mon.',zh:'為什麼不吃？因為我肚子很飽啊。',
+   g:'<code>〜もん</code>（＝もの）是撒嬌式的理由句尾，與だって成對出現。<code>お腹がいっぱい</code>＝吃飽了。'},
+  {jp:'早く寝なさい。<span class="hl">だって</span>、まだ宿題が終わらないから。',rm:'Hayaku nenasai. Datte, mada shukudai ga owaranai kara.',zh:'快去睡。因為作業還沒寫完啊。',
+   g:'<code>〜なさい</code>＝溫和的命令。<code>まだ〜ない</code>＝還沒…。句尾的<code>から</code>與だって呼應，說明辯解的理由。'}
  ],
  warn:'非常口語且略帶孩子氣，<b>絕對不要對上司、客戶使用</b>。正式場合用<code>なぜなら〜からです</code>。另外「だって」也有「即使…也」「聽說」的用法，需看語境。'},
 
@@ -145,7 +155,11 @@ const W=[
  core:'<b>接續詞</b>。前句是<b>狀況／原因</b>，後句是<b>自然發生的結果或後續</b>，用於敘述事情經過。<br><span class="pat">［狀況］。＋それで、＋［結果］。</span>',
  ex:[
   {jp:'朝ご飯を食べました。<span class="hl">それで</span>、学校に行きました。',rm:'Asagohan o tabemashita. Sorede, gakkō ni ikimashita.',zh:'我吃了早餐。然後就去學校了。',
-   g:'兩句都用<b>ました形</b>（過去式），描述時間先後。移動動詞<code>行きます</code>的目的地用助詞<b>に</b>。'}
+   g:'兩句都用<b>ました形</b>（過去式），描述時間先後。移動動詞<code>行きます</code>的目的地用助詞<b>に</b>。'},
+  {jp:'電車が止まりました。<span class="hl">それで</span>、会社に遅れました。',rm:'Densha ga tomarimashita. Sorede, kaisha ni okuremashita.',zh:'電車停駛了。於是上班遲到了。',
+   g:'<code>〜に遅れます</code>＝遲到、趕不上，對象用<b>に</b>。前句是自己無法控制的狀況，後句是自然的結果，這正是それで的核心。'},
+  {jp:'道が分かりませんでした。<span class="hl">それで</span>、駅員に聞きました。',rm:'Michi ga wakarimasen deshita. Sorede, ekiin ni kikimashita.',zh:'我不知道路。於是就問了站務員。',
+   g:'<code>〜が分かります</code>的對象用<b>が</b>；<code>〜に聞きます</code>的詢問對象用<b>に</b>。兩句都是過去式，敘述事情經過。'}
  ],
  warn:'後句<b>不能</b>是命令、請求、意志（×<code>それで、行きなさい</code>）。要接請求時改用<b>ですから</b>。「だから」重「我的判斷」，「それで」重「客觀經過」。'},
 
@@ -153,7 +167,11 @@ const W=[
  core:'<b>接續詞</b>，<b>單純累加或時間先後</b>，沒有因果關係。書面語色彩較強。<br><span class="pat">A。＋そして、＋B。</span>',
  ex:[
   {jp:'公園に行きました。<span class="hl">そして</span>、友達に会いました。',rm:'Kōen ni ikimashita. Soshite, tomodachi ni aimashita.',zh:'我去了公園。然後見到了朋友。',
-   g:'<code>〜に会います</code>＝見到某人，對象用助詞<b>に</b>（不是を）。そして只是把兩個動作依序排列。'}
+   g:'<code>〜に会います</code>＝見到某人，對象用助詞<b>に</b>（不是を）。そして只是把兩個動作依序排列。'},
+  {jp:'朝起きて、顔を洗いました。<span class="hl">そして</span>、朝ご飯を食べました。',rm:'Asa okite, kao o araimashita. Soshite, asagohan o tabemashita.',zh:'早上起床洗了臉。然後吃了早餐。',
+   g:'句中的<code>起きて</code>是<b>て形</b>（同一句內連接），そして用於<b>句與句之間</b>——兩種連接方式可以並用。'},
+  {jp:'この部屋は広いです。<span class="hl">そして</span>、とても静かです。',rm:'Kono heya wa hiroi desu. Soshite, totemo shizuka desu.',zh:'這個房間很寬敞。而且非常安靜。',
+   g:'そして也能<b>累加性質</b>（い形容詞＋な形容詞）。<code>静か</code>是な形容詞，修飾名詞時要加な（<code>静かな部屋</code>）。'}
  ],
  warn:'比較：<b>そして</b>＝單純加上（A，然後B）／<b>それで</b>＝因為A所以接著B／<b>それから</b>＝強調時間順序（接下來）。'},
 
@@ -161,7 +179,11 @@ const W=[
  core:'<b>極口語的追加用法</b>，想到補充事項時放句首。<br><span class="pat">A。＋あと、＋B。</span>',
  ex:[
   {jp:'コーヒーをください。<span class="hl">あと</span>、ケーキもください。',rm:'Kōhī o kudasai. Ato, kēki mo kudasai.',zh:'請給我咖啡。還有，也請給我蛋糕。',
-   g:'<code>〜をください</code>＝請給我…。第二句用助詞<b>も</b>（也）取代を，表示追加同類項目——<b>も會替換掉が／を</b>，這是N5重點。'}
+   g:'<code>〜をください</code>＝請給我…。第二句用助詞<b>も</b>（也）取代を，表示追加同類項目——<b>も會替換掉が／を</b>，這是N5重點。'},
+  {jp:'牛乳を買ってきて。<span class="hl">あと</span>、パンもお願い。',rm:'Gyūnyū o katte kite. Ato, pan mo onegai.',zh:'幫我買牛奶回來。還有，也麻煩買麵包。',
+   g:'<code>〜てきて</code>＝去做…再回來（て形＋くる）。<code>お願い</code>是<code>お願いします</code>的省略，口語中很常見。'},
+  {jp:'土曜日は空いています。<span class="hl">あと</span>、日曜日の午前も大丈夫です。',rm:'Doyōbi wa aite imasu. Ato, nichiyōbi no gozen mo daijōbu desu.',zh:'星期六有空。還有，星期日上午也可以。',
+   g:'<code>空いています</code>＝有空（自動詞＋ています表狀態）。追加時間時常用あと，並搭配<b>も</b>。'}
  ],
  warn:'「あと」原義是「之後」（<code>3日あと</code>／<code>あとで電話します</code>）。作追加用時很隨性，正式場合用<b>それに</b>、<b>さらに</b>。'},
 
@@ -169,7 +191,11 @@ const W=[
  core:'<b>では</b>的口語縮約形。承接對方的話或既有狀況，導出<b>結論或下一步</b>。<br><span class="pat">（前提）→ じゃあ、＋［結論］。</span>',
  ex:[
   {jp:'明日は雨が降ります。<span class="hl">じゃあ</span>、家にいます。',rm:'Ashita wa ame ga furimasu. Jā, ie ni imasu.',zh:'明天會下雨。那我就待在家。',
-   g:'<code>雨が降ります</code>＝下雨（自然現象的主語用<b>が</b>）。<code>〜にいます</code>＝存在於某處（人／動物用います，物用あります）。'}
+   g:'<code>雨が降ります</code>＝下雨（自然現象的主語用<b>が</b>）。<code>〜にいます</code>＝存在於某處（人／動物用います，物用あります）。'},
+  {jp:'この店は今日休みですよ。<span class="hl">じゃあ</span>、明日また来ます。',rm:'Kono mise wa kyō yasumi desu yo. Jā, ashita mata kimasu.',zh:'這家店今天休息喔。那我明天再來。',
+   g:'句尾的<b>よ</b>用於告知對方還不知道的資訊。じゃあ承接這個新資訊，導出自己的下一步。'},
+  {jp:'みんな集まりましたね。<span class="hl">じゃあ</span>、始めましょう。',rm:'Minna atsumarimashita ne. Jā, hajimemashō.',zh:'大家都到了呢。那麼我們開始吧。',
+   g:'<code>〜ましょう</code>＝勸誘「一起…吧」。<code>集まります</code>是自動詞。じゃあ＋ましょう是開會、上課開場的固定組合。'}
  ],
  warn:'也常用於道別：<code>じゃあ、また明日。</code>正式場合請用<b>では</b>（<code>では、失礼します</code>）。'},
 
@@ -177,7 +203,11 @@ const W=[
  core:'<b>副詞</b>，本身不能連接句子，<b>必須與條件形呼應</b>：<br><span class="pat">もし＋〜たら／〜なら／〜ば、＋［結果］。</span><br>它的作用是<b>預告「這是假設」</b>，讓聽者早一步進入假設語境。',
  ex:[
   {jp:'<span class="hl">もし</span>明日天気が良かったら、公園に行きます。',rm:'Moshi ashita tenki ga yokattara, kōen ni ikimasu.',zh:'如果明天天氣好的話，我要去公園。',
-   g:'い形容詞的たら形＝去<b>い</b>＋<b>かったら</b>：良い→良かったら、寒い→寒かったら。動詞則是た形＋ら：降る→降ったら。'}
+   g:'い形容詞的たら形＝去<b>い</b>＋<b>かったら</b>：良い→良かったら、寒い→寒かったら。動詞則是た形＋ら：降る→降ったら。'},
+  {jp:'<span class="hl">もし</span>雨が降ったら、試合は中止です。',rm:'Moshi ame ga futtara, shiai wa chūshi desu.',zh:'如果下雨的話，比賽就取消。',
+   g:'動詞的たら形＝<b>た形＋ら</b>：降る→降った→降ったら。後句可以是名詞句（<code>中止です</code>），不限動詞。'},
+  {jp:'<span class="hl">もし</span>時間があれば、手伝ってください。',rm:'Moshi jikan ga areba, tetsudatte kudasai.',zh:'如果有時間的話，請幫我。',
+   g:'<b>ば形</b>：ある→あれば（字尾う段改え段＋ば）。もし也能搭配ば形，後句要接請求時比たら更自然。'}
  ],
  warn:'「もし」可以省略（<code>明日晴れたら行きます</code>也通），但<b>條件形不能省略</b>。×<code>もし明日天気が良いです、行きます</code>。'},
 
@@ -185,7 +215,11 @@ const W=[
  core:'<b>條件助詞</b>，接在<b>名詞或普通形</b>之後。特色是<b>承接對方剛提到的話題</b>當前提（主題提示）。<br><span class="pat">名詞／普通形＋なら、＋［建議・請求・意見］。</span>',
  ex:[
   {jp:'明日来られない<span class="hl">なら</span>、電話してください。',rm:'Ashita korarenai nara, denwa shite kudasai.',zh:'如果明天不能來的話，請打電話。',
-   g:'<code>来られない</code>＝来る的可能形否定（来る→来られる→来られない）。<b>なら的後句可以是請求／建議</b>，這是它與たら最實用的差別。'}
+   g:'<code>来られない</code>＝来る的可能形否定（来る→来られる→来られない）。<b>なら的後句可以是請求／建議</b>，這是它與たら最實用的差別。'},
+  {jp:'日本語<span class="hl">なら</span>、田中さんに聞いてください。',rm:'Nihongo nara, Tanaka-san ni kiite kudasai.',zh:'日文的話，請問田中先生。',
+   g:'<b>名詞直接接なら，不加だ</b>。這句典型地承接對方剛提到的話題（「我想學日文」→「日文的話…」），後句接請求。'},
+  {jp:'安い<span class="hl">なら</span>、買います。',rm:'Yasui nara, kaimasu.',zh:'便宜的話，我就買。',
+   g:'い形容詞可<b>直接</b>接なら（<code>安い＋なら</code>）。な形容詞與名詞要去掉だ再接：<code>便利なら</code>、<code>学生なら</code>。'}
  ],
  warn:'比較：<b>なら</b>＝「既然是那樣的話」（重前提，後可接請求）／<b>たら</b>＝「當…成立時」（重時間先後）。名詞後面直接接なら，<b>不加だ</b>：○<code>日本語なら</code>、×<code>日本語だなら</code>。'},
 
@@ -195,7 +229,9 @@ const W=[
   {jp:'食べてみました。<span class="hl">やっぱり</span>、おいしかったです。',rm:'Tabete mimashita. Yappari, oishikatta desu.',zh:'我吃了看看。果然很好吃。',
    g:'<code>〜てみます</code>＝試著做看看（て形＋みる）。<code>おいしかったです</code>＝い形容詞過去式（去い＋かった）。此處為用法①「果然如預期」。'},
   {jp:'いろいろ考えましたが、<span class="hl">やっぱり</span>これにします。',rm:'Iroiro kangaemashita ga, yappari kore ni shimasu.',zh:'我考慮了很多，還是決定選這個。',
-   g:'<code>〜にします</code>＝決定選擇…（點餐、做決定常用）。此處為用法②「想來想去還是」。'}
+   g:'<code>〜にします</code>＝決定選擇…（點餐、做決定常用）。此處為用法②「想來想去還是」。'},
+  {jp:'毎日運動しています。<span class="hl">やっぱり</span>、健康が一番大切ですから。',rm:'Mainichi undō shite imasu. Yappari, kenkō ga ichiban taisetsu desu kara.',zh:'我每天運動。畢竟健康最重要。',
+   g:'此處為用法③「畢竟、一般來說就是這樣」。<code>〜が一番＋形容詞</code>＝最…，句尾<code>から</code>補述理由。'}
  ],
  warn:'正式書面請用<b>やはり</b>；「やっぱ」是更隨性的縮短形，只用於熟人間。'},
 
@@ -203,7 +239,11 @@ const W=[
  core:'<b>副詞</b>。把前面的問題暫時擱下，<b>先處理眼前最重要的事</b>。常搭配<code>まず</code>（首先）。<br><span class="pat">（狀況）。＋とにかく＋［優先行動］。</span>',
  ex:[
   {jp:'天気は悪いです。でも、<span class="hl">とにかく</span>行きましょう。',rm:'Tenki wa warui desu. Demo, tonikaku ikimashō.',zh:'天氣很差。但總之我們還是去吧。',
-   g:'<code>〜ましょう</code>＝勸誘形「一起…吧」（ます形去ます＋ましょう）。とにかく修飾後面的動詞，強調「先不管條件」。'}
+   g:'<code>〜ましょう</code>＝勸誘形「一起…吧」（ます形去ます＋ましょう）。とにかく修飾後面的動詞，強調「先不管條件」。'},
+  {jp:'理由はあとで聞きます。<span class="hl">とにかく</span>、まず座ってください。',rm:'Riyū wa ato de kikimasu. Tonikaku, mazu suwatte kudasai.',zh:'理由等一下再聽。總之請先坐下。',
+   g:'とにかく常與<code>まず</code>（首先）搭配。這裡的<code>あとで</code>＝之後，是「あと」的原義用法。'},
+  {jp:'方法は分かりません。<span class="hl">とにかく</span>やってみます。',rm:'Hōhō wa wakarimasen. Tonikaku yatte mimasu.',zh:'我不知道方法。總之先試試看。',
+   g:'<code>〜てみます</code>＝試著做看看。とにかく直接修飾後面的動詞，中間<b>不加逗號</b>也很自然。'}
  ],
  warn:'近義比較：<b>とにかく</b>＝總之先做／<b>とりあえず</b>＝暫且先這樣（之後可能改）／<b>ともかく</b>＝姑且不論（較書面）。'},
 
@@ -211,7 +251,11 @@ const W=[
  core:'<b>副詞</b>，表示「這是理所當然的」。可<b>單獨回答</b>：<code>もちろんです。</code><br><span class="pat">もちろん＋［當然成立的內容］。</span>',
  ex:[
   {jp:'明日のパーティーに来てください。<span class="hl">もちろん</span>、友達も来てもいいですよ。',rm:'Ashita no pātī ni kite kudasai. Mochiron, tomodachi mo kite mo ii desu yo.',zh:'請來參加明天的派對。當然，朋友也可以一起來喔。',
-   g:'<code>〜てもいいです</code>＝可以…（許可，て形＋もいいです）。注意兩個も功能不同：<code>友達も</code>的も＝「也」，<code>来ても</code>的も屬句型的一部分。'}
+   g:'<code>〜てもいいです</code>＝可以…（許可，て形＋もいいです）。注意兩個も功能不同：<code>友達も</code>的も＝「也」，<code>来ても</code>的も屬句型的一部分。'},
+  {jp:'手伝ってくれますか。<span class="hl">もちろん</span>です。',rm:'Tetsudatte kuremasu ka. Mochiron desu.',zh:'可以幫我嗎？當然可以。',
+   g:'<code>〜てくれますか</code>＝請對方為我做…。回答時<b>單用もちろん＋です</b>就能成句，這是最常見的形式。'},
+  {jp:'日本語は<span class="hl">もちろん</span>、英語も話せます。',rm:'Nihongo wa mochiron, eigo mo hanasemasu.',zh:'日文當然會，英文也會說。',
+   g:'<code>AはもちろんBも</code>＝A不用說，連B也…。<code>話せます</code>是話す的可能形（字尾う段改え段＋ます）。'}
  ],
  warn:'回答上司時單說「もちろん」略顯隨便，加です更禮貌：<code>もちろんです／もちろん大丈夫です</code>。'},
 
@@ -219,7 +263,11 @@ const W=[
  core:'<b>推測副詞</b>，確信度約 <b>60〜80%</b>。習慣與句尾推測形<b>呼應</b>使用：<br><span class="pat">たぶん＋〜でしょう／〜と思います。</span>',
  ex:[
   {jp:'明日は<span class="hl">たぶん</span>雨が降るでしょう。',rm:'Ashita wa tabun ame ga furu deshō.',zh:'明天大概會下雨吧。',
-   g:'<code>〜でしょう</code>＝推測（普通形＋でしょう：降る→降るでしょう）。たぶん與でしょう成對出現才自然，只寫たぶん＋断定句會怪。'}
+   g:'<code>〜でしょう</code>＝推測（普通形＋でしょう：降る→降るでしょう）。たぶん與でしょう成對出現才自然，只寫たぶん＋断定句會怪。'},
+  {jp:'彼は<span class="hl">たぶん</span>来ないと思います。',rm:'Kare wa tabun konai to omoimasu.',zh:'我想他大概不會來。',
+   g:'たぶん也可與<code>〜と思います</code>呼應。引用自己的判斷用助詞<b>と</b>；<code>来ない</code>是来る的ない形（不規則變化）。'},
+  {jp:'この本は<span class="hl">たぶん</span>図書館にあるでしょう。',rm:'Kono hon wa tabun toshokan ni aru deshō.',zh:'這本書大概圖書館裡有吧。',
+   g:'<code>〜にあります</code>＝（物）存在於某處，場所用<b>に</b>。普通形<code>ある</code>＋でしょう表推測。'}
  ],
  warn:'確信度階梯：<code>絶対に(100%)＞きっと(90%)＞たぶん(70%)＞もしかしたら(30%)</code>。書面正式用<b>おそらく</b>。'},
 
@@ -227,7 +275,11 @@ const W=[
  core:'<b>接續詞</b>，只用在<b>疑問句之間</b>，請對方二選一。<br><span class="pat">Aですか。＋それとも、＋Bですか。</span>',
  ex:[
   {jp:'コーヒーにしますか。<span class="hl">それとも</span>、紅茶にしますか。',rm:'Kōhī ni shimasu ka. Soretomo, kōcha ni shimasu ka.',zh:'你要咖啡？還是紅茶？',
-   g:'<b>前後都必須是疑問句</b>（〜か）。<code>〜にします</code>＝決定選…。也可簡化為<code>コーヒー、それとも紅茶？</code>'}
+   g:'<b>前後都必須是疑問句</b>（〜か）。<code>〜にします</code>＝決定選…。也可簡化為<code>コーヒー、それとも紅茶？</code>'},
+  {jp:'歩いて行きますか。<span class="hl">それとも</span>、バスで行きますか。',rm:'Aruite ikimasu ka. Soretomo, basu de ikimasu ka.',zh:'你要走去？還是搭公車去？',
+   g:'<code>歩いて行きます</code>＝走著去（て形表方式）。交通工具用助詞<b>で</b>。前後都是<code>〜か</code>疑問句才能用それとも。'},
+  {jp:'今日行きますか。<span class="hl">それとも</span>、明日にしますか。',rm:'Kyō ikimasu ka. Soretomo, ashita ni shimasu ka.',zh:'今天去？還是改成明天？',
+   g:'<code>〜にします</code>＝決定選…。二選一時兩個選項的<b>句型要對稱</b>（都用ますか），聽起來才自然。'}
  ],
  warn:'陳述句的「或」<b>不能</b>用それとも，要用<b>または</b>：○<code>ペンまたは鉛筆で書いてください</code>、×<code>ペンそれとも鉛筆で…</code>。'}
 ];
