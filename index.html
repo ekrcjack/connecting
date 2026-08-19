@@ -33,6 +33,10 @@ button.f.active{background:#fff;color:#667eea}
 .spk{background:#667eea;color:#fff;border:none;border-radius:50%;width:30px;height:30px;font-size:14px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .spk:hover{background:#764ba2}
 .spk.playing{animation:p .6s infinite}
+.spkall{background:#fff;color:#4553c4;border:1px solid #b8c0f0;border-radius:8px;padding:5px 12px;
+  font-size:12.5px;cursor:pointer;margin-bottom:12px;font-family:inherit}
+.spkall:hover{background:#f0f2ff}
+.spkall.playing{background:#667eea;border-color:#667eea;color:#fff}
 @keyframes p{50%{transform:scale(1.15)}}
 .exrm{font-size:12px;color:#667eea;font-style:italic;margin-bottom:4px;line-height:1.5}
 .exzh{font-size:13px;color:#555;margin-bottom:8px}
@@ -58,6 +62,7 @@ button.f.active{background:#fff;color:#667eea}
 <script>
 function speak(t,btn){
   if(!('speechSynthesis' in window))return;
+  stopSeq();
   speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(t);
   u.lang='ja-JP';u.rate=0.85;
@@ -65,6 +70,34 @@ function speak(t,btn){
   u.onend=()=>btn.classList.remove('playing');
   u.onerror=()=>btn.classList.remove('playing');
   setTimeout(()=>speechSynthesis.speak(u),80);
+}
+
+/* 連續播放：連結詞本身 → 該詞的全部例句 */
+let seqBtn=null,seqTimer=null;
+function stopSeq(){
+  if(seqTimer){clearTimeout(seqTimer);seqTimer=null}
+  if(seqBtn){seqBtn.classList.remove('playing');seqBtn.textContent='▶ 全部播放';seqBtn=null}
+}
+function playCard(btn){
+  if(!('speechSynthesis' in window))return;
+  const same=(seqBtn===btn);
+  stopSeq();
+  speechSynthesis.cancel();
+  document.querySelectorAll('.spk.playing').forEach(b=>b.classList.remove('playing'));
+  if(same)return;                                   // 再按一次＝停止
+  const card=btn.closest('.card');
+  const texts=[btn.dataset.word,...[...card.querySelectorAll('.exjp')].map(el=>el.innerText)];
+  seqBtn=btn;btn.classList.add('playing');btn.textContent='■ 停止播放';
+  let i=0;
+  const next=()=>{
+    if(seqBtn!==btn)return;                         // 已被其他操作中斷
+    if(i>=texts.length){stopSeq();return}
+    const u=new SpeechSynthesisUtterance(texts[i++]);
+    u.lang='ja-JP';u.rate=0.85;
+    u.onend=u.onerror=()=>{if(seqBtn===btn)seqTimer=setTimeout(next,320)};
+    speechSynthesis.speak(u);
+  };
+  setTimeout(next,80);                              // cancel 後留一點時間，否則部分瀏覽器會吞掉第一句
 }
 
 const CATS={contrast:'逆接・選擇',cause:'因果',sequence:'順接・追加',condition:'條件',adverb:'語氣副詞'};
@@ -211,6 +244,7 @@ function render(){
         <div class="mean"><b>${w.en}</b><br><span class="tag">${CATS[w.cat]}</span></div>
       </div>
       <div class="core"><div class="t">🔑 核心用法・接續規則</div>${w.core}</div>
+      <button class="spkall" data-word="${w.jp}" onclick="playCard(this)" title="依序播放「${w.jp}」與 ${w.ex.length} 個例句">▶ 全部播放</button>
       ${w.ex.map(e=>`
         <div class="ex">
           <div class="exhead">
@@ -233,6 +267,9 @@ function buildCtrl(){
   c.querySelectorAll('button').forEach(b=>b.onclick=()=>{
     c.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
+    stopSeq();
+    if('speechSynthesis' in window)speechSynthesis.cancel();
+    document.querySelectorAll('.spk.playing').forEach(x=>x.classList.remove('playing'));
     const t=b.dataset.c;
     document.querySelectorAll('.card').forEach(card=>{
       card.classList.toggle('hidden',t!=='all'&&card.dataset.cat!==t);
