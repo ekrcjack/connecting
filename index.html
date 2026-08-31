@@ -77,44 +77,118 @@ button.f.active{background:#fff;color:#667eea}
 <div class="stats" id="stats"></div>
 </div>
 <script>
+/* 語音朗讀。Chrome 有兩個坑會讓長句唸到一半斷掉：
+   1) 沒有任何 JS 引用的 utterance 會在朗讀途中被 GC 回收 → 用 _cur 保住它。
+   2) 長 utterance 本身沒有時長保證 → splitJa() 先切成短段依序播。 */
+let _cur=null;      // 保住當前 utterance 的引用，這行是防斷句的關鍵，別拿掉
+let _timer=null;    // 待發的播放（cancel 後的延遲、例句之間的間隔）
+let _seq=0;         // 播放序號：一遞增就讓所有舊的回呼失效
+
+/* 長句分段：先按句末標點切，還太長再按読点切，最後才硬切。
+   max 是打包目標長度；hardMax 是絕對上限，刻意訂得比 max 寬，
+   因為硬切會切在詞中間造成唸錯（本檔最長的不可分割段落 18 字，實際不會觸發）。 */
+function splitJa(text, max, hardMax){
+  max = max || 24;
+  hardMax = hardMax || 40;
+  const HARD = '。！？!?', SOFT = '、，,';
+  const out = [];
+  const push = s=>{
+    if(s.length <= hardMax){ out.push(s); return; }
+    while(s.length > hardMax){ out.push(s.slice(0, hardMax)); s = s.slice(hardMax); }
+    if(s) out.push(s);
+  };
+  const cut = (str, marks)=>{                // 依標點切塊，標點留在塊尾
+    const r = []; let b = '';
+    for(const ch of str){ b += ch; if(marks.indexOf(ch) >= 0){ r.push(b); b = ''; } }
+    if(b) r.push(b);
+    return r;
+  };
+  cut(text, HARD).forEach(sent=>{
+    sent = sent.trim();
+    if(!sent) return;
+    if(sent.length <= max){ out.push(sent); return; }
+    let acc = '';
+    cut(sent, SOFT).forEach(part=>{
+      if(acc && (acc + part).length > max){ push(acc); acc = part; }
+      else acc += part;
+    });
+    if(acc) push(acc);
+  });
+  return out.length ? out : [text];
+}
+
+function _cancelAll(){
+  _seq++;
+  if(_timer){clearTimeout(_timer);_timer=null}
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  _cur=null;
+}
+
+/* 依序唸完 texts（每個元素會再自動分段），元素之間空 gap 毫秒 */
+function _speakItems(texts, my, gap, done){
+  let ti=0;
+  const nextItem=()=>{
+    if(my!==_seq)return;                            // 已被新的播放或停止取代
+    if(ti>=texts.length){if(done)done();return}
+    const segs=splitJa(texts[ti++]);
+    let si=0;
+    const step=()=>{
+      if(my!==_seq)return;
+      if(si>=segs.length){
+        if(gap>0){_timer=setTimeout(()=>{_timer=null;nextItem()},gap)}else nextItem();
+        return;
+      }
+      const u=new SpeechSynthesisUtterance(segs[si++]);
+      u.lang='ja-JP';u.rate=0.85;
+      u.onend=()=>{if(my===_seq)step()};
+      u.onerror=e=>{
+        const err=e&&e.error;
+        if(err&&err!=='interrupted'&&err!=='canceled')
+          console.warn('[speak] 中斷:',err,segs[si-1]);
+        if(my===_seq)step();                        // 單段出錯就跳過，不要整串卡死
+      };
+      _cur=u;
+      speechSynthesis.speak(u);
+    };
+    step();
+  };
+  nextItem();
+}
+
 function speak(t,btn){
   if(!('speechSynthesis' in window))return;
   stopSeq();
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(t);
-  u.lang='ja-JP';u.rate=0.85;
+  _cancelAll();
+  const my=_seq;
+  document.querySelectorAll('.spk.playing').forEach(b=>b.classList.remove('playing'));
   btn.classList.add('playing');
-  u.onend=()=>btn.classList.remove('playing');
-  u.onerror=()=>btn.classList.remove('playing');
-  setTimeout(()=>speechSynthesis.speak(u),80);
+  // cancel 後留一點時間，否則部分瀏覽器會吞掉第一句
+  _timer=setTimeout(()=>{
+    _timer=null;
+    _speakItems([t],my,0,()=>{if(my===_seq)btn.classList.remove('playing')});
+  },80);
 }
 
 /* 連續播放：連結詞本身 → 該詞的全部例句 */
-let seqBtn=null,seqTimer=null;
+let seqBtn=null;
 function stopSeq(){
-  if(seqTimer){clearTimeout(seqTimer);seqTimer=null}
+  _cancelAll();
   if(seqBtn){seqBtn.classList.remove('playing');seqBtn.textContent='▶ 全部播放';seqBtn=null}
 }
 function playCard(btn){
   if(!('speechSynthesis' in window))return;
   const same=(seqBtn===btn);
   stopSeq();
-  speechSynthesis.cancel();
   document.querySelectorAll('.spk.playing').forEach(b=>b.classList.remove('playing'));
   if(same)return;                                   // 再按一次＝停止
   const card=btn.closest('.card');
   const texts=[btn.dataset.word,...[...card.querySelectorAll('.exjp')].map(el=>el.innerText)];
   seqBtn=btn;btn.classList.add('playing');btn.textContent='■ 停止播放';
-  let i=0;
-  const next=()=>{
-    if(seqBtn!==btn)return;                         // 已被其他操作中斷
-    if(i>=texts.length){stopSeq();return}
-    const u=new SpeechSynthesisUtterance(texts[i++]);
-    u.lang='ja-JP';u.rate=0.85;
-    u.onend=u.onerror=()=>{if(seqBtn===btn)seqTimer=setTimeout(next,320)};
-    speechSynthesis.speak(u);
-  };
-  setTimeout(next,80);                              // cancel 後留一點時間，否則部分瀏覽器會吞掉第一句
+  const my=_seq;
+  _timer=setTimeout(()=>{
+    _timer=null;
+    _speakItems(texts,my,320,()=>{if(my===_seq)stopSeq()});
+  },80);
 }
 
 const CATS={contrast:'逆接・選擇',cause:'因果',sequence:'順接・追加',condition:'條件',adverb:'語氣副詞'};
